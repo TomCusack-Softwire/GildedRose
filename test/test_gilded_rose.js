@@ -1,15 +1,7 @@
 let {expect} = require('chai');
 let {Shop, Item} = require('../src/gilded_rose.js');
+
 describe("Gilded Rose", function () {
-
-    /*
-    it("should foo", function () {
-        const gildedRose = new Shop([new Item("foo", 0, 0)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].name).to.equal("fixme");
-    });
-     */
-
     it("At the end of each day our system lowers both values for every item.", () => {
         const shop = new Shop([new Item("foo", 10, 10)]);
         const items = shop.updateQuality();
@@ -66,14 +58,14 @@ describe("Gilded Rose", function () {
         expect(items[0].quality).to.equal(12);
     });
 
-    it("and by 3 when there are 5 days or less", () => {
+    it("... and by 3 when there are 5 days or less", () => {
         const shop = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)]);
         const items = shop.updateQuality();
         expect(items[0].sellIn).to.equal(4);
         expect(items[0].quality).to.equal(13);
     });
 
-    it("but Quality drops to 0 after the concert.", () => {
+    it("... but Quality drops to 0 after the concert.", () => {
         const shop = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10)]);
         const items = shop.updateQuality();
         expect(items[0].sellIn).to.equal(-1);
